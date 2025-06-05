@@ -22,17 +22,36 @@ beckn-soil-testing-assignment/
     │   └── thankyou.html       # Thank you page
     ├── css/
     │   └── style.css          # Styles for all pages
-    └── js/
-        ├── main.js            # Homepage functionality
-        ├── signup-handler.js  # Signup page functionality (dummy submission)
-        └── form-handler.js    # [DEPRECATED] - Modal form handler
+    ├── js/
+    │   ├── main.js            # Homepage functionality
+    │   ├── signup-handler.js  # Signup page functionality (dummy submission)
+    │   └── form-handler.js    # [DEPRECATED] - Modal form handler
+    └── figma-wireframes/       # UI wireframe images (PNG exports)
+        ├── homepage.png
+        ├── signup-form.png
+        └── thankyou-page.png
 ```
 
 ## Parts Overview
 
-- **[Part 1 - Implementation Guide](./part1-implementation-guide/README.md)**Detailed guide on Beckn protocol usage for soil testing, including roles, DOFP flow, API calls, sample payloads, and assumptions.
-- **[Part 2 - Frontend UI](./part2-frontend/)**
-  Complete website with homepage, dedicated signup page, and thank you page. Features dummy form submission for demo purposes.
+- **[Part 1 - Implementation Guide](./part1-implementation-guide/README.md)** Detailed guide on Beckn protocol usage for soil testing, including roles, DOFP flow, API calls, sample payloads, and assumptions.
+- **[Part 2 - Frontend UI](./part2-frontend/)** Complete website with homepage, dedicated signup page, and thank you page. Features dummy form submission for demo purposes.
+
+## 🎨 UI Wireframes (Part 2)
+
+The frontend wireframes for the agri-service platform were created using Figma and are available both online and as local reference images.
+
+### Design Resources
+
+🔗 **[View Interactive Wireframes on Figma](https://www.figma.com/design/UElcAilF7ok8iPn2gfhH6G/Open-Agri-Network-Wireframes---stitch?node-id=0-1&t=iVdtRGoCMchDRmTU-1)**
+
+📁 **Local Wireframes**: [`part2-frontend/figma-wireframes/`](./part2-frontend/figma-wireframes/)
+
+**Design Highlights:**
+- 📱 Mobile-first approach targeting rural farmers
+- 🌾 Agricultural green theme with high contrast for outdoor visibility
+- ♿ Accessible forms with large touch targets (44px minimum)
+- 🎯 Simple navigation flow: Homepage → Signup → Thank You
 
 ---
 
@@ -45,6 +64,59 @@ beckn-soil-testing-assignment/
 - **Thank You Page**: Confirmation page with personalized user data
 - **Responsive Design**: Mobile-first approach with modern CSS
 
+## Parts Overview
+
+- **[Part 1 - Implementation Guide](./part1-implementation-guide/README.md)** Detailed guide on Beckn protocol usage for soil testing, including roles, DOFP flow, API calls, sample payloads, and assumptions.
+- **[Part 2 - Frontend UI](./part2-frontend/)** Complete website with homepage, dedicated signup page, and thank you page. Features dummy form submission for demo purposes.
+
+## 🎨 UI Wireframes (Part 2)
+
+The frontend wireframes for the agri-service platform were created using Figma and are available both online and as local reference images.
+
+### Design Resources
+
+🔗 **[View Interactive Wireframes on Figma](https://www.figma.com/design/UElcAilF7ok8iPn2gfhH6G/Open-Agri-Network-Wireframes---stitch?node-id=0-1&t=iVdtRGoCMchDRmTU-1)**
+
+📁 **Local Wireframes**: [`part2-frontend/figma-wireframes/`](./part2-frontend/figma-wireframes/)
+
+**Design Highlights:**
+- 📱 Mobile-first approach targeting rural farmers
+- 🌾 Agricultural green theme with high contrast for outdoor visibility
+- ♿ Accessible forms with large touch targets (44px minimum)
+- 🎯 Simple navigation flow: Homepage → Signup → Thank You
+
+---
+
+## Folder Structure 📂
+
+```bash
+beckn-soil-testing-assignment/
+├── part1-implementation-guide/
+│   ├── README.md               # Guide document with roles, flow, APIs
+│   ├── assets/
+│   │   └── flow-diagram.png   # Optional high-level flow diagram
+│   └── sample-payloads/
+│       ├── search.json
+│       ├── on_search.json
+│       ├── select.json
+│       └── confirm.json
+└── part2-frontend/
+    ├── index.html              # Homepage with CTA buttons
+    ├── pages/
+    │   ├── signup.html         # Dedicated signup page
+    │   └── thankyou.html       # Thank you page
+    ├── css/
+    │   └── style.css          # Styles for all pages
+    ├── js/
+    │   ├── main.js            # Homepage functionality
+    │   ├── signup-handler.js  # Signup page functionality (dummy submission)
+    │   └── form-handler.js    # [DEPRECATED] - Modal form handler
+    └── figma-wireframes/       # UI wireframe images (PNG exports)
+        ├── homepage.png
+        ├── signup-form.png
+        └── thankyou-page.png
+```
+
 ### Key Features
 
 - ✅ **Role Pre-selection**: URL parameters for farmer/buyer roles
@@ -53,6 +125,7 @@ beckn-soil-testing-assignment/
 - ✅ **Data Persistence**: localStorage for form data recovery
 - ✅ **Loading States**: Professional UX with loading indicators
 - ✅ **Console Logging**: Detailed form data logging for demo
+- ✅ **UI Wireframes**: Figma designs and PNG exports available for reference
 
 ---
 
@@ -100,31 +173,6 @@ python -m http.server 8000
 
 ---
 
-## File Structure Analysis
-
-### ✅ **Current Implementation:**
-
-```
-part2-frontend/
-├── index.html                    # ✅ Homepage
-├── pages/
-│   ├── signup.html              # ✅ Signup form
-│   └── thankyou.html            # ✅ Confirmation
-├── css/
-│   └── style.css               # ✅ Responsive styles
-└── js/
-    ├── main.js                 # ✅ Homepage logic
-    ├── signup-handler.js       # ✅ Form handling (dummy)
-    └── form-handler.js         # ❌ Deprecated (modal version)
-```
-
-### 🔧 **Recommended Cleanup:**
-
-- **Remove**: `js/form-handler.js` (no longer needed)
-- **Keep**: Current `pages/` folder structure
-- **Update**: All relative paths to match folder structure
-
----
 
 ## Submission Instructions
 
