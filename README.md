@@ -48,6 +48,7 @@ The frontend wireframes for the agri-service platform were created using Figma a
 📁 **Local Wireframes**: [`part2-frontend/figma-wireframes/`](./part2-frontend/figma-wireframes/)
 
 **Design Highlights:**
+
 - 📱 Mobile-first approach targeting rural farmers
 - 🌾 Agricultural green theme with high contrast for outdoor visibility
 - ♿ Accessible forms with large touch targets (44px minimum)
@@ -80,10 +81,17 @@ The frontend wireframes for the agri-service platform were created using Figma a
 📁 **Local Wireframes**: [`part2-frontend/figma-wireframes/`](./part2-frontend/figma-wireframes/)
 
 **Design Highlights:**
+
 - 📱 Mobile-first approach targeting rural farmers
 - 🌾 Agricultural green theme with high contrast for outdoor visibility
 - ♿ Accessible forms with large touch targets (44px minimum)
 - 🎯 Simple navigation flow: Homepage → Signup → Thank You
+
+### 📸 UI Preview
+
+| Home Page | Signup | Thank You |
+|-----------|--------|-----------|
+| ![Home](./part2-frontend/figma-wireframes/Home_page.png) | ![Signup](./part2-frontend/figma-wireframes/Signup_page.png) | ![Thank You](./part2-frontend/figma-wireframes/ThankYou_page.png) |
 
 ---
 
@@ -172,7 +180,6 @@ python -m http.server 8000
 - **Location**: District and State validation
 
 ---
-
 
 ## Submission Instructions
 
