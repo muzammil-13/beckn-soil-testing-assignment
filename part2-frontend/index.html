@@ -1,50 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Open Agri Soil Testing</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Agri Network - Soil Testing Services</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  <header>
-    <h1>Welcome to Open Agri Soil Testing</h1>
-    <p>Your unified platform for soil testing services.</p>
-  </header>
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero-section">
+            <h1>🌾 Welcome to Open Agri Network</h1>
+            <p class="tagline">Connecting farmers and buyers with soil testing services</p>
+            <p class="description">
+                Discover certified soil testing labs, get digital reports, and make informed crop decisions 
+                through our Beckn-powered agricultural platform. Get your soil tested in 48 hours with 
+                personalized recommendations for better crop yields.
+            </p>
+        </header>
+        
+        <!-- Call-to-Action Buttons -->
+        <div class="cta-section">
+            <div class="cta-buttons">
+                <a href="./pages/signup.html?role=farmer" class="btn btn-farmer">
+                    👨‍🌾 Join as Farmer
+                </a>
+                <a href="./pages/signup.html?role=buyer" class="btn btn-buyer">
+                    🏢 Join as Buyer
+                </a>
+            </div>
+        </div>
 
-  <section>
-    <button onclick="join('Farmer')">Join as Farmer</button>
-    <button onclick="join('Buyer')">Join as Buyer</button>
-  </section>
+        <!-- Features Section -->
+        <section class="features">
+            <h2>🔬 Our Services</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🧪 Soil Testing</h3>
+                    <p>NPK analysis, pH testing, and micronutrient assessment</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📊 Digital Reports</h3>
+                    <p>Easy-to-understand results with crop recommendations</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🚚 Sample Pickup</h3>
+                    <p>Convenient sample collection from your farm</p>
+                </div>
+            </div>
+        </section>
 
-  <section id="signup-section" style="display:none;">
-    <h2>Sign Up</h2>
-    <form id="signup-form" onsubmit="submitForm(event)">
-      <label>Name: <input type="text" name="name" required /></label><br/>
-      <label>Role: <input type="text" name="role" id="role" readonly /></label><br/>
-      <label>Phone Number: <input type="tel" name="phone" required /></label><br/>
-      <label>District / State: <input type="text" name="location" required /></label><br/>
-      <button type="submit">Submit</button>
-    </form>
-  </section>
+        <!-- Additional Info Section -->
+        <section class="info-section">
+            <div class="info-card">
+                <h3>🌐 Powered by Beckn Protocol</h3>
+                <p>Our platform uses the open Beckn protocol to create a unified agricultural network, ensuring transparency, interoperability, and farmer-first approach.</p>
+            </div>
+            <div class="info-stats">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Certified Labs</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Farmers Served</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">48hrs</div>
+                    <div class="stat-label">Average Results</div>
+                </div>
+            </div>
+        </section>
+    </div>
 
-  <section id="thankyou-section" style="display:none;">
-    <h2>Thank you for signing up!</h2>
-  </section>
-
-  <script>
-    function join(role) {
-      document.getElementById('signup-section').style.display = 'block';
-      document.getElementById('thankyou-section').style.display = 'none';
-      document.getElementById('role').value = role;
-    }
-
-    function submitForm(event) {
-      event.preventDefault();
-      // TODO: Add your form submission logic here (Google Sheets / FormSubmit)
-      document.getElementById('signup-section').style.display = 'none';
-      document.getElementById('thankyou-section').style.display = 'block';
-    }
-  </script>
+    <script src="./js/main.js"></script>
 </body>
 </html>
