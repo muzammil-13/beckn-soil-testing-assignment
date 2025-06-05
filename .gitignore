@@ -1,0 +1,169 @@
+# Beckn Soil Testing Assignment - Git Ignore File
+
+# ===================================
+# IDE and Editor Files
+# ===================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ===================================
+# Node.js (if using build tools)
+# ===================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# ===================================
+# Environment and Configuration
+# ===================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+config.local.js
+secrets.json
+
+# ===================================
+# Build and Distribution
+# ===================================
+dist/
+build/
+*.min.js
+*.min.css
+.cache/
+.parcel-cache/
+
+# ===================================
+# Logs and Debug Files
+# ===================================
+*.log
+logs/
+debug.log
+error.log
+
+# ===================================
+# Temporary Files
+# ===================================
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# ===================================
+# FormSubmit and Email Configuration
+# ===================================
+# Ignore files containing actual email addresses
+email-config.js
+formsubmit-config.json
+*-email-real.html
+
+# ===================================
+# API Keys and Sensitive Data
+# ===================================
+# Beckn protocol keys and certificates
+*.pem
+*.key
+*.crt
+beckn-keys/
+api-keys.json
+credentials.json
+
+# ===================================
+# Documentation Drafts
+# ===================================
+# Keep published docs, ignore drafts
+*-draft.md
+*-wip.md
+notes.txt
+todo.txt
+
+# ===================================
+# Asset Optimization
+# ===================================
+# Original high-res images (keep optimized versions)
+assets/original/
+*.psd
+*.ai
+*.sketch
+
+# ===================================
+# Testing and Coverage
+# ===================================
+coverage/
+.nyc_output/
+test-results/
+*.test.local.js
+
+# ===================================
+# Deployment and CI/CD
+# ===================================
+.github/workflows/deploy-*.yml
+deploy-config.json
+.netlify/
+.vercel/
+
+# ===================================
+# Backup Files
+# ===================================
+*.bak
+*.backup
+*-backup.*
+backup/
+
+# ===================================
+# OS Generated Files
+# ===================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===================================
+# Project Specific
+# ===================================
+# Sample payloads with real data
+part1-implementation-guide/sample-payloads/*-real.json
+part1-implementation-guide/sample-payloads/*-production.json
+
+# Frontend with real form endpoints
+part2-frontend/*-production.html
+part2-frontend/js/*-production.js
+
+# Real contact information
+*-contact-real.*
+
+# ===================================
+# Archive and Compressed Files
+# ===================================
+*.zip
+*.tar.gz
+*.rar
+*.7z
+submission-*.zip
+
+# ===================================
+# Keep These Files (Negative Patterns)
+# ===================================
+# Ensure important project files are not ignored
+!part1-implementation-guide/README.md
+!part1-implementation-guide/sample-payloads/*.json
+!part2-frontend/index.html
+!part2-frontend/signup.html
+!part2-frontend/thankyou.html
+!part2-frontend/css/style.css
+!part2-frontend/js/main.js
+!part2-frontend/js/signup-handler.js
+!README.md
+!.gitignore

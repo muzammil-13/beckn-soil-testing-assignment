@@ -1,0 +1,31 @@
+{
+  "context": {
+    "domain": "agri.uki.network",
+    "action": "search",
+    "version": "1.2.0",
+    "bap_id": "soilapp.uki.bap",
+    "transaction_id": "txn-001",
+    "message_id": "msg-001",
+    "timestamp": "2025-06-05T10:00:00+05:30"
+  },
+  "message": {
+    "intent": {
+      "item": {
+        "descriptor": {
+          "name": "Soil Testing"
+        }
+      },
+      "fulfillment": {
+        "end": {
+          "location": {
+            "gps": "19.9975,73.7898",  
+            "address": {
+              "district": "Nashik",
+              "state": "Maharashtra"
+            }
+          }
+        }
+      }
+    }
+  }
+}
