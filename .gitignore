@@ -12,7 +12,7 @@
 Thumbs.db
 
 # ===================================
-# Node.js (if using build tools)
+# Node.js Backend
 # ===================================
 node_modules/
 npm-debug.log*
@@ -20,6 +20,14 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 yarn.lock
+.npm
+.yarn-integrity
+
+# Backend specific
+part2-frontend/backend/node_modules/
+part2-frontend/backend/npm-debug.log*
+part2-frontend/backend/yarn-debug.log*
+part2-frontend/backend/package-lock.json
 
 # ===================================
 # Environment and Configuration
@@ -29,8 +37,36 @@ yarn.lock
 .env.development.local
 .env.test.local
 .env.production.local
+.env.example.local
 config.local.js
 secrets.json
+
+# Backend environment files
+part2-frontend/backend/.env
+part2-frontend/backend/.env.local
+part2-frontend/backend/.env.production
+part2-frontend/backend/config.local.js
+
+# ===================================
+# Beckn Protocol Keys and Certificates
+# ===================================
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+beckn-keys/
+beckn-certs/
+private-keys/
+certificates/
+api-keys.json
+credentials.json
+beckn-credentials.json
+
+# Beckn specific secrets
+part2-frontend/backend/beckn-keys/
+part2-frontend/backend/certificates/
+part2-frontend/backend/private-keys/
 
 # ===================================
 # Build and Distribution
@@ -41,6 +77,12 @@ build/
 *.min.css
 .cache/
 .parcel-cache/
+.next/
+out/
+
+# Backend build files
+part2-frontend/backend/dist/
+part2-frontend/backend/build/
 
 # ===================================
 # Logs and Debug Files
@@ -49,6 +91,53 @@ build/
 logs/
 debug.log
 error.log
+combined.log
+access.log
+
+# Backend specific logs
+part2-frontend/backend/*.log
+part2-frontend/backend/logs/
+part2-frontend/backend/bap.log
+part2-frontend/backend/bpp.log
+part2-frontend/frontend.log
+
+# ===================================
+# Process Management
+# ===================================
+# PM2 logs and pids
+.pm2/
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# ===================================
+# Docker and Container Files
+# ===================================
+# Docker volumes and data
+docker-data/
+.docker/
+docker-compose.override.yml
+docker-compose.local.yml
+
+# Container logs
+container-logs/
+
+# ===================================
+# Testing and Coverage
+# ===================================
+coverage/
+.nyc_output/
+test-results/
+*.test.local.js
+.coverage/
+junit.xml
+test-report.xml
+
+# Backend test files
+part2-frontend/backend/coverage/
+part2-frontend/backend/test-results/
+part2-frontend/backend/.nyc_output/
 
 # ===================================
 # Temporary Files
@@ -57,6 +146,16 @@ error.log
 *.temp
 .tmp/
 .temp/
+nohup.out
+
+# ===================================
+# Database Files (if added later)
+# ===================================
+*.sqlite
+*.sqlite3
+*.db
+database.json
+db-data/
 
 # ===================================
 # FormSubmit and Email Configuration
@@ -65,17 +164,20 @@ error.log
 email-config.js
 formsubmit-config.json
 *-email-real.html
+*-email-production.js
 
 # ===================================
 # API Keys and Sensitive Data
 # ===================================
-# Beckn protocol keys and certificates
-*.pem
-*.key
-*.crt
-beckn-keys/
-api-keys.json
-credentials.json
+# Production API configurations
+*-production-config.json
+*-prod-keys.json
+*-live-credentials.json
+
+# Third-party service keys
+krishitantra-keys.json
+geocoding-api-keys.json
+payment-gateway-keys.json
 
 # ===================================
 # Documentation Drafts
@@ -85,6 +187,8 @@ credentials.json
 *-wip.md
 notes.txt
 todo.txt
+NOTES.md
+TODO.md
 
 # ===================================
 # Asset Optimization
@@ -94,22 +198,22 @@ assets/original/
 *.psd
 *.ai
 *.sketch
-
-# ===================================
-# Testing and Coverage
-# ===================================
-coverage/
-.nyc_output/
-test-results/
-*.test.local.js
+*.fig
 
 # ===================================
 # Deployment and CI/CD
 # ===================================
 .github/workflows/deploy-*.yml
 deploy-config.json
+deployment-keys/
 .netlify/
 .vercel/
+.heroku/
+
+# Kubernetes secrets
+k8s-secrets/
+*.secret.yaml
+*-secret.yml
 
 # ===================================
 # Backup Files
@@ -118,6 +222,7 @@ deploy-config.json
 *.backup
 *-backup.*
 backup/
+backups/
 
 # ===================================
 # OS Generated Files
@@ -129,20 +234,46 @@ backup/
 .Trashes
 ehthumbs.db
 Thumbs.db
+desktop.ini
 
 # ===================================
-# Project Specific
+# Runtime and Cache Files
+# ===================================
+.cache
+.parcel-cache
+.sass-cache
+.eslintcache
+.stylelintcache
+
+# ===================================
+# Project Specific - Production Data
 # ===================================
 # Sample payloads with real data
 part1-implementation-guide/sample-payloads/*-real.json
 part1-implementation-guide/sample-payloads/*-production.json
+part1-implementation-guide/sample-payloads/*-live.json
 
 # Frontend with real form endpoints
 part2-frontend/*-production.html
 part2-frontend/js/*-production.js
+part2-frontend/backend/*-production.js
 
 # Real contact information
 *-contact-real.*
+*-contact-production.*
+
+# ===================================
+# Test and Demo Files
+# ===================================
+# Generated test reports
+test-report.html
+integration-test-results.html
+performance-report.html
+
+# Demo data files
+demo-data/
+sample-data/
+mock-responses/
 
 # ===================================
 # Archive and Compressed Files
@@ -151,7 +282,30 @@ part2-frontend/js/*-production.js
 *.tar.gz
 *.rar
 *.7z
+*.tar
+*.gz
 submission-*.zip
+project-backup-*.tar.gz
+
+# ===================================
+# Security Scanning Results
+# ===================================
+security-scan-results/
+vulnerability-reports/
+*.security.json
+
+# ===================================
+# Performance and Monitoring
+# ===================================
+# Performance monitoring data
+performance-data/
+metrics/
+monitoring-data/
+
+# APM and logging service configs with keys
+newrelic.js
+datadog.yaml
+*-monitoring-config.json
 
 # ===================================
 # Keep These Files (Negative Patterns)
@@ -159,11 +313,75 @@ submission-*.zip
 # Ensure important project files are not ignored
 !part1-implementation-guide/README.md
 !part1-implementation-guide/sample-payloads/*.json
+!part1-implementation-guide/assets/
+
+# Frontend files to keep
 !part2-frontend/index.html
-!part2-frontend/signup.html
-!part2-frontend/thankyou.html
+!part2-frontend/pages/signup.html
+!part2-frontend/pages/signup-beckn.html
+!part2-frontend/pages/thankyou.html
 !part2-frontend/css/style.css
+!part2-frontend/css/beckn-styles.css
 !part2-frontend/js/main.js
 !part2-frontend/js/signup-handler.js
+!part2-frontend/js/signup-handler-beckn.js
+!part2-frontend/js/beckn-integration.js
+!part2-frontend/js/beckn-status-tracker.js
+
+# Backend files to keep
+!part2-frontend/backend/package.json
+!part2-frontend/backend/beckn-bap.js
+!part2-frontend/backend/mock-bpp.js
+!part2-frontend/backend/.env.example
+
+# Configuration files to keep
+!part2-frontend/docker-compose.yml
+!part2-frontend/nginx.conf
+!part2-frontend/Dockerfile
+
+# Documentation to keep
 !README.md
+!part2-frontend/BECKN_SETUP.md
+!part2-frontend/PROJECT_SUMMARY.md
 !.gitignore
+
+# Scripts to keep
+!part2-frontend/test-complete-setup.sh
+
+# ===================================
+# Development Tools
+# ===================================
+# ESLint, Prettier, etc.
+.eslintrc.local.js
+.prettierrc.local.json
+.editorconfig.local
+
+# ===================================
+# Beckn Network Specific
+# ===================================
+# Beckn registry cache
+.beckn-cache/
+beckn-registry-cache/
+
+# Transaction logs with sensitive data
+transaction-logs/
+beckn-transaction-*.log
+payment-transaction-*.log
+
+# ===================================
+# Mobile App Development (Future)
+# ===================================
+# React Native / Flutter (if added later)
+android/
+ios/
+.expo/
+.expo-shared/
+
+# ===================================
+# Analytics and Tracking
+# ===================================
+# Analytics configuration with real keys
+google-analytics-config.json
+facebook-pixel-config.json
+mixpanel-config.json
+*-analytics-real.js
