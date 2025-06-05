@@ -1,0 +1,72 @@
+{
+  "context": {
+    "domain": "agri-soil-testing",
+    "action": "confirm",
+    "version": "1.2.0",
+    "bap_id": "farmer-app.openagri.network",
+    "bap_uri": "https://farmer-app.openagri.network/beckn",
+    "bpp_id": "krishi-kendra.soil-labs.network",
+    "bpp_uri": "https://krishi-kendra.soil-labs.network/beckn",
+    "transaction_id": "txn_001_soil_search",
+    "message_id": "msg_003_confirm",
+    "timestamp": "2024-01-15T10:40:00.000Z"
+  },
+  "message": {
+    "order": {
+      "id": "order_soil_001",
+      "provider": {
+        "id": "provider_001"
+      },
+      "items": [
+        {
+          "id": "soil_test_basic",
+          "quantity": {
+            "count": 1
+          }
+        }
+      ],
+      "billing": {
+        "name": "Smita Patil",
+        "phone": "9876543210",
+        "address": {
+          "locality": "Whitefield",
+          "city": "Bangalore",
+          "state": "Karnataka",
+          "area_code": "560066"
+        }
+      },
+      "fulfillment": {
+        "id": "fulfillment_001",
+        "type": "pickup",
+        "start": {
+          "location": {
+            "gps": "12.9716,77.5946",
+            "address": {
+              "name": "Smita's Farm",
+              "locality": "Whitefield",
+              "city": "Bangalore",
+              "state": "Karnataka",
+              "area_code": "560066"
+            }
+          },
+          "contact": {
+            "phone": "9876543210"
+          },
+          "time": {
+            "range": {
+              "start": "2024-01-16T10:00:00.000Z",
+              "end": "2024-01-16T12:00:00.000Z"
+            }
+          }
+        }
+      },
+      "payment": {
+        "type": "ON-FULFILLMENT",
+        "params": {
+          "amount": "500",
+          "currency": "INR"
+        }
+      }
+    }
+  }
+}

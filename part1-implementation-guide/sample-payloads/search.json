@@ -1,30 +1,46 @@
 {
   "context": {
-    "domain": "agri.uki.network",
+    "domain": "agri-soil-testing",
     "action": "search",
     "version": "1.2.0",
-    "bap_id": "soilapp.uki.bap",
-    "transaction_id": "txn-001",
-    "message_id": "msg-001",
-    "timestamp": "2025-06-05T10:00:00+05:30"
+    "bap_id": "farmer-app.openagri.network",
+    "bap_uri": "https://farmer-app.openagri.network/beckn",
+    "transaction_id": "txn_001_soil_search",
+    "message_id": "msg_001_search",
+    "timestamp": "2024-01-15T10:30:00.000Z",
+    "location": {
+      "country": {
+        "code": "IND"
+      },
+      "city": {
+        "code": "BLR"
+      }
+    }
   },
   "message": {
     "intent": {
       "item": {
         "descriptor": {
-          "name": "Soil Testing"
-        }
+          "name": "Soil Testing Services"
+        },
+        "category_id": "soil-analysis"
       },
       "fulfillment": {
-        "end": {
+        "type": "pickup",
+        "start": {
           "location": {
-            "gps": "19.9975,73.7898",  
+            "gps": "12.9716,77.5946",
             "address": {
-              "district": "Nashik",
-              "state": "Maharashtra"
+              "area_code": "560001",
+              "locality": "Whitefield",
+              "city": "Bangalore",
+              "state": "Karnataka"
             }
           }
         }
+      },
+      "payment": {
+        "type": "ON-FULFILLMENT"
       }
     }
   }

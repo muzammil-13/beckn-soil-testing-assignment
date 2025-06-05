@@ -1,33 +1,94 @@
 {
   "context": {
-    "domain": "agri.uki.network",
+    "domain": "agri-soil-testing",
     "action": "on_search",
     "version": "1.2.0",
-    "bpp_id": "krishi-kendra.bpp",
-    "transaction_id": "txn-001",
-    "message_id": "msg-002",
-    "timestamp": "2025-06-05T10:01:00+05:30"
+    "bpp_id": "krishi-kendra.soil-labs.network",
+    "bpp_uri": "https://krishi-kendra.soil-labs.network/beckn",
+    "transaction_id": "txn_001_soil_search",
+    "message_id": "msg_001_on_search",
+    "timestamp": "2024-01-15T10:30:05.000Z"
   },
   "message": {
     "catalog": {
-      "bpp/fulfillments": [{
-        "id": "fulfill-101",
-        "type": "Soil Sample Pickup",
-        "tags": {
-          "collection_type": "Farm Pickup",
-          "available_slots": "06-Jun 9AM–11AM",
-          "price": "₹300"
+      "bpp/descriptor": {
+        "name": "ABC Soil Testing Lab",
+        "short_desc": "Certified soil testing services",
+        "long_desc": "Professional soil analysis with NPK testing, pH analysis, and crop recommendations"
+      },
+      "bpp/providers": [
+        {
+          "id": "provider_001",
+          "descriptor": {
+            "name": "Krishi Kendra Soil Services",
+            "short_desc": "Premium soil testing lab"
+          },
+          "locations": [
+            {
+              "id": "loc_001",
+              "gps": "12.9716,77.5946",
+              "address": {
+                "locality": "Whitefield",
+                "city": "Bangalore",
+                "state": "Karnataka",
+                "area_code": "560066"
+              }
+            }
+          ],
+          "items": [
+            {
+              "id": "soil_test_basic",
+              "descriptor": {
+                "name": "Basic NPK Soil Test",
+                "short_desc": "NPK analysis with pH testing",
+                "long_desc": "Comprehensive soil analysis including Nitrogen, Phosphorus, Potassium levels and pH measurement"
+              },
+              "category_id": "soil-analysis",
+              "price": {
+                "currency": "INR",
+                "value": "500"
+              },
+              "fulfillment_id": "fulfillment_001"
+            },
+            {
+              "id": "soil_test_premium",
+              "descriptor": {
+                "name": "Premium Soil Analysis",
+                "short_desc": "Complete soil health report",
+                "long_desc": "Full spectrum analysis including NPK, micronutrients, organic matter, and personalized crop recommendations"
+              },
+              "category_id": "soil-analysis",
+              "price": {
+                "currency": "INR",
+                "value": "1200"
+              },
+              "fulfillment_id": "fulfillment_001"
+            }
+          ],
+          "fulfillments": [
+            {
+              "id": "fulfillment_001",
+              "type": "pickup",
+              "start": {
+                "time": {
+                  "range": {
+                    "start": "2024-01-16T09:00:00.000Z",
+                    "end": "2024-01-16T17:00:00.000Z"
+                  }
+                }
+              },
+              "end": {
+                "time": {
+                  "range": {
+                    "start": "2024-01-18T09:00:00.000Z",
+                    "end": "2024-01-18T17:00:00.000Z"
+                  }
+                }
+              }
+            }
+          ]
         }
-      }],
-      "bpp/items": [{
-        "id": "soil-test-npk",
-        "descriptor": {
-          "name": "NPK Primary Nutrient Test"
-        },
-        "price": {
-          "value": "150"
-        }
-      }]
+      ]
     }
   }
 }
