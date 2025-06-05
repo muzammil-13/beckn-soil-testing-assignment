@@ -307,8 +307,8 @@ This implementation demonstrates exceptional engineering capabilities and thorou
 
 **Submission Details:**
 
-* **Primary Contact** : [kathirvel@becknprotocol.io](vscode-webview://0houhk3k8c28bbj89sji7ai8nnlridup0644bbs4ulqtca7tjrmb/index.html?id=24cf2c3a-21d6-461a-8da2-2ec4034fe64a&parentId=1&origin=0bf60bf2-274c-4562-b245-8d2db31423af&swVersion=4&extensionId=sourcegraph.cody-ai&platform=electron&vscode-resource-base-authority=vscode-resource.vscode-cdn.net&parentOrigin=vscode-file%3A%2F%2Fvscode-app&purpose=webviewView)
-* **CC** : [dhiraj@becknprotocol.io](vscode-webview://0houhk3k8c28bbj89sji7ai8nnlridup0644bbs4ulqtca7tjrmb/index.html?id=24cf2c3a-21d6-461a-8da2-2ec4034fe64a&parentId=1&origin=0bf60bf2-274c-4562-b245-8d2db31423af&swVersion=4&extensionId=sourcegraph.cody-ai&platform=electron&vscode-resource-base-authority=vscode-resource.vscode-cdn.net&parentOrigin=vscode-file%3A%2F%2Fvscode-app&purpose=webviewView)
-* **Repository** : github.com/muzammil-13/beckn-soil-testing-assignment
+* **Primary Contact** : [kathirvel@becknprotocol.io](mailto:kathirvel@becknprotocol.io)
+* **CC** : [dhiraj@becknprotocol.io](mailto:dhiraj@becknprotocol.io)
+* **Repository** : [github.com/muzammil-13/beckn-soil-testing-assignment](https://github.com/muzammil-13/beckn-soil-testing-assignment/tree/runtime-integration?tab=readme-ov-file)
 
 *Analysis completed with high confidence in project quality and submission readiness.*
