@@ -1,201 +1,158 @@
-# Beckn Protocol – Open Agri Network: Soil Testing Use Case Implementation Guide
+# 🌾 Beckn Implementation Guide – Outcome Visualization: Soil Testing (UKI)
 
-## 1. Use Case Overview
+## Overview
 
-This document describes how developers can integrate with a Unified Krishi Interface (UKI) open network powered by the Beckn Protocol for the **Soil Testing** use case.
-Soil testing helps farmers understand their soil health and make better crop decisions by sending samples to labs and receiving test results digitally.
+This guide demonstrates how to implement a soil testing service journey on the Unified Krishi Interface (UKI), using the Beckn Protocol. It is intended to help developers and network participants (BAPs, BPPs) understand the roles, flows, and technical implementation for integrating soil testing services.
 
----
-
-## 2. Roles & Network Participants
-
-| Entity                       | Role on Beckn Network            | Description                                                         |
-| ---------------------------- | -------------------------------- | ------------------------------------------------------------------- |
-| Farmer                       | BAP (Beckn Application Platform) | Initiates soil test requests and views results.                     |
-| Soil Testing Lab             | BPP (Beckn Provider Platform)    | Receives test requests, processes soil samples, and shares results. |
-| Aggregator / Extension Agent | Optional Facilitator             | Connects farmers with labs, helps with network discovery.           |
+The use case follows the DOFP (Discovery → Order → Fulfilment → Post-Fulfilment) model and highlights how a farmer (Smita) discovers, books, and receives soil testing services from a Beckn-compatible platform.
 
 ---
 
-## 3. DOFP Journey (Discovery → Order → Fulfillment → Post-fulfillment)
+## Scope
 
-### Step 1: Discovery
+- 📲 Actors: Farmer (BAP), Soil Testing Service Provider (BPP), Taxonomy APIs
+- 🌐 Context: Soil testing discovery and service booking via Beckn-enabled agri platform
+- 🔁 Protocol Flow: Beckn API lifecycle applied to Soil Testing
 
-- Farmer searches for soil testing labs available in their district/state.
+## Network Participants and Beckn Roles
 
-### Step 2: Order
+This section explains the key entities involved in the soil testing use case and their mapped roles within the Beckn protocol ecosystem.
 
-- Farmer selects a lab, places a soil test order with sample details.
-
-### Step 3: Fulfillment
-
-- Lab receives the order, confirms sample pickup or drop-off.
-
-### Step 4: Post-fulfillment
-
-- Lab sends soil test results back to farmer via the platform.
-
----
-
-## 4. API Call Sequence & Sample Payloads
-
-### API Flow Sequence
-
-| Action    | Description                            |
-| --------- | -------------------------------------- |
-| search    | Farmer searches for soil testing labs. |
-| on_search | Labs respond with availability.        |
-| select    | Farmer selects a lab and test package. |
-| on_select | Lab acknowledges selection.            |
-| init      | Order initiation with details.         |
-| confirm   | Lab confirms order acceptance.         |
-| update    | Updates on sample pickup/status.       |
-| status    | Soil test result delivery.             |
-| cancel    | Order cancellation (if any).           |
+| **Entity**                         | **Beckn Role** | **Description** |
+|-----------------------------------|----------------|-----------------|
+| **Smita (Farmer)**                | BAP            | Uses a Beckn-enabled agri app to search, book, and receive soil testing services. |
+| **Krishi Kendra Soil Services**   | BPP            | Provides soil testing services and integrates into UKI via Beckn. Responds to search, confirm, fulfill requests. |
+| **Delivery Agent**                | Part of BPP    | Collects soil sample from Smita’s farm or receives it at the testing center. |
+| **Krishitantra or Taxonomy API**  | External System| Provides standardized taxonomy like crop types, test categories, etc., used by both BAP and BPP. |
+| **UKI Network Gateway**           | Registry/Router| Facilitates discovery and message routing between BAP and BPP nodes. |
 
 ---
 
-### Sample JSON Payloads
+## DOFP Journey – Soil Testing via Beckn
 
-#### 1. search Request (Farmer searches for labs)
+The interaction follows the standard Beckn protocol phases: **Discovery → Order → Fulfilment → Post-Fulfilment**, enabling an end-to-end digital journey for soil testing.
 
-```json
-{
-  "context": {
-    "domain": "agri-soil-testing",
-    "action": "search",
-    "timestamp": "2025-06-05T10:00:00Z",
-    "bap_id": "farmer-app.example.com",
-    "bpp_id": "soil-lab-registry.example.com"
-  },
-  "message": {
-    "intent": {
-      "item": {
-        "descriptor": {
-          "name": "soil testing"
-        }
-      },
-      "fulfillment": {
-        "start": {
-          "location": {
-            "gps": "12.9716,77.5946",  
-            "address": {
-              "city": "Bengaluru",
-              "state": "Karnataka"
-            }
-          }
-        }
-      }
-    }
-  }
-}
+### 🔍 1. Discovery
+
+- Smita (BAP) searches for soil testing services near her farm via the app.
+- BPP (e.g., Krishi Kendra) responds with available services, including:
+  - Ratings
+  - Service types (NPK, micronutrients, etc.)
+  - Cost, availability, and location
+  - Pickup or drop-off options
+- Smita filters and selects a preferred provider.
+
+---
+
+### 📦 2. Order
+
+- Smita views detailed quote and service info.
+- Krishi Kendra (BPP) shares:
+  - Time slots
+  - Pricing (pickup vs drop-off)
+  - Pre-requisites (PDFs, videos)
+  - Terms and conditions
+- Smita confirms the service and selects payment (e.g., Cash on Delivery).
+- BPP confirms the booking and provides order ID + pickup details.
+
+---
+
+### 🚚 3. Fulfilment
+
+**Two modes:**
+
+✅ **Farm Pickup**:
+- Delivery agent visits Smita’s farm, collects the soil sample.
+- Payment is done at pickup.
+- Smita receives real-time status updates.
+
+✅ **Self Drop-off**:
+- Smita collects the sample and delivers it to the testing center.
+- She follows instructions shared earlier.
+- She receives status updates post-drop.
+
+---
+
+### 🧾 4. Post-Fulfilment
+
+- Smita receives a test report (PDF) with insights (text, video, image).
+- She gives feedback/rating on:
+  - Service quality
+  - Provider behavior
+- BPP can follow up for deeper insights.
+- Smita can reach out to support if issues arise.
+
+---
+
+## Beckn API Flow – Soil Testing Journey
+
+The following sequence represents the key API interactions between the BAP (Smita’s app) and BPP (Krishi Kendra Soil Services) during the soil testing use case:
+
+| **Step**         | **API**           | **Initiated By** | **Purpose** |
+|------------------|-------------------|------------------|-------------|
+| 1️⃣ Search        | `search`          | BAP              | Smita searches for nearby soil testing centers. |
+| 2️⃣ On Search     | `on_search`       | BPP              | BPPs respond with matching services, slots, pricing, etc. |
+| 3️⃣ Select        | `select`          | BAP              | Smita selects a preferred testing service. |
+| 4️⃣ On Select     | `on_select`       | BPP              | BPP confirms availability and responds with selection details. |
+| 5️⃣ Init          | `init`            | BAP              | BAP initiates the order request with all needed info. |
+| 6️⃣ On Init       | `on_init`         | BPP              | BPP validates and confirms service initiation. |
+| 7️⃣ Confirm       | `confirm`         | BAP              | Final order confirmation with payment preference (COD). |
+| 8️⃣ On Confirm    | `on_confirm`      | BPP              | BPP shares confirmed order ID, agent details. |
+| 9️⃣ Status        | `status`          | BAP              | BAP checks current status of collection/delivery. |
+| 🔟 Update         | `update`          | BPP              | BPP pushes live status updates to BAP. |
+| 🔁 Rating         | `rating`          | BAP              | Smita gives feedback for the service post-fulfilment. |
+| ✅ On Rating      | `on_rating`       | BPP              | BPP acknowledges feedback and may ask for follow-up. |
+
+---
+
+### Notes:
+- The sequence follows standard Beckn protocol lifecycles.
+- All payloads conform to Beckn schema v1.2 (or latest supported by UKI).
+- Multimedia content (videos/PDFs) is shared as URLs within payloads (e.g., `desc.url`).
+
+---
+
+## Developer Notes, Tags & Assumptions
+
+### 📌 Tags & Taxonomy Assumptions
+
+- `collection_type`: "Farm Pickup" / "Drop-off at Centre"
+- `test_type`: "NPK", "Micro Nutrients", "Soil Texture", "Water Test"
+- `location.district` and `location.state`: Mapped to BPP serviceable zones
+- `crop_type`, `crop_variety`: Sourced from Krishitantra’s external API
+- `media.url`: Used to share preparation instructions (PDF, image, video)
+
+---
+
+### ⚠️ Assumptions
+
+- BAP supports local language input (Smita can search in Marathi).
+- All payments are offline (COD), no digital transaction integration shown.
+- Report sharing is asynchronous and happens via media URL in `update` or support contact.
+- External taxonomy (e.g., crop categories) may evolve and are assumed dynamic.
+
+---
+
+### 💡 Developer Notes
+
+- BAP & BPP nodes must be registered with UKI registry and follow Beckn OpenAPI schemas.
+- All communication must be signed and timestamped as per protocol.
+- Optional fields like `previous_crop`, `yield`, `feedback_rating` help enhance services but are not mandatory.
+- System clocks must be in sync with IST (important for booking slots).
+- Payloads stored in `/payloads/` folder are simplified and can be expanded as needed.
+
+---
+
+## 🧭 High-Level System Flow Diagram
+```bash
+Smita (Farmer App - BAP)
+│
+▼
+[ UKI Gateway / Registry ]
+│
+▼
+Krishi Kendra (Soil Lab - BPP)
+│
+├── Pickup Agent (if farm pickup)
+└── Soil Testing Lab (if drop-off)
 ```
-
-#### 2. on_search Response (Labs responding)
-
-```json
-{
-  "context": {
-    "transaction_id": "123456789",
-    "action": "on_search",
-    "bpp_id": "soil-lab-registry.example.com"
-  },
-  "message": {
-    "catalog": {
-      "bpp": {
-        "descriptor": {
-          "name": "ABC Soil Testing Lab"
-        },
-        "items": [
-          {
-            "id": "soil_test_001",
-            "descriptor": {
-              "name": "Basic Soil Nutrient Test"
-            },
-            "price": {
-              "currency": "INR",
-              "value": "500"
-            }
-          }
-        ]
-      }
-    }
-  }
-}
-```
-#### 3. select Request (Farmer selects test package)
-
-```json
-{
-  "context": {
-    "transaction_id": "123456789",
-    "action": "select",
-    "bap_id": "farmer-app.example.com",
-    "bpp_id": "abc-soil-lab.example.com"
-  },
-  "message": {
-    "order": {
-      "items": [
-        {
-          "id": "soil_test_001",
-          "quantity": {
-            "count": 1
-          }
-        }
-      ],
-      "fulfillment": {
-        "type": "pickup",
-        "end": {
-          "location": {
-            "gps": "12.9716,77.5946",
-            "address": {
-              "city": "Bengaluru",
-              "state": "Karnataka"
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-#### 4. on_select Response (Lab confirms selection)
-
-```json
-{
-  "context": {
-    "transaction_id": "123456789",
-    "action": "on_select",
-    "bpp_id": "abc-soil-lab.example.com"
-  },
-  "message": {
-    "order": {
-      "state": "Accepted"
-    }
-  }
-}
-```
----
-
-## 5. Challenges & Assumptions
-
-* Farmers may have limited internet access; app should be lightweight.
-* Soil test results must be easy to understand with visual cues.
-* Geo-location accuracy is important for lab discovery.
-* Data privacy of farmers' information must be ensured.
-
----
-
-## 6. Developer Notes
-
-* All payloads follow Beckn JSON specifications.
-* Use Beckn protocol libraries if available.
-* Reuse existing APIs and extend with soil test specific fields.
-* Network participants must authenticate using Beckn's security protocols.
-* Extendable for other agri-services like fertilizer recommendations.
-
----
-
-## Appendix: High-Level Flow Diagram
-
-(Refer to `/docs/soil-testing-flow.png`)

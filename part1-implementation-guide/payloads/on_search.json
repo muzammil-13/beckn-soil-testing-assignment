@@ -1,0 +1,33 @@
+{
+  "context": {
+    "domain": "agri.uki.network",
+    "action": "on_search",
+    "version": "1.2.0",
+    "bpp_id": "krishi-kendra.bpp",
+    "transaction_id": "txn-001",
+    "message_id": "msg-002",
+    "timestamp": "2025-06-05T10:01:00+05:30"
+  },
+  "message": {
+    "catalog": {
+      "bpp/fulfillments": [{
+        "id": "fulfill-101",
+        "type": "Soil Sample Pickup",
+        "tags": {
+          "collection_type": "Farm Pickup",
+          "available_slots": "06-Jun 9AM–11AM",
+          "price": "₹300"
+        }
+      }],
+      "bpp/items": [{
+        "id": "soil-test-npk",
+        "descriptor": {
+          "name": "NPK Primary Nutrient Test"
+        },
+        "price": {
+          "value": "150"
+        }
+      }]
+    }
+  }
+}
