@@ -122,6 +122,22 @@ function showMessage(message, type = 'success') {
     messageDiv.className = type === 'success' ? 'form-success' : 'form-error';
     messageDiv.textContent = message;
     
+    // Styling for messages
+    messageDiv.style.padding = '15px';
+    messageDiv.style.borderRadius = '8px';
+    messageDiv.style.marginBottom = '20px';
+    messageDiv.style.fontWeight = '500';
+    
+    if (type === 'success') {
+        messageDiv.style.backgroundColor = '#d4edda';
+        messageDiv.style.color = '#155724';
+        messageDiv.style.border = '1px solid #c3e6cb';
+    } else {
+        messageDiv.style.backgroundColor = '#f8d7da';
+        messageDiv.style.color = '#721c24';
+        messageDiv.style.border = '1px solid #f5c6cb';
+    }
+    
     // Insert at top of form
     form.insertBefore(messageDiv, form.firstChild);
     
@@ -131,6 +147,34 @@ function showMessage(message, type = 'success') {
             messageDiv.remove();
         }
     }, 5000);
+}
+
+// DUMMY FORM SUBMISSION - Mock API call
+function submitFormDummy(formData) {
+    return new Promise((resolve, reject) => {
+        // Simulate network delay
+        setTimeout(() => {
+            // Simulate random success/failure for demo
+            const success = Math.random() > 0.1; // 90% success rate
+            
+            if (success) {
+                // Log form data to console (for demo purposes)
+                console.log('🌾 DUMMY FORM SUBMISSION - Data received:');
+                console.log('Name:', formData.get('name'));
+                console.log('Role:', formData.get('role'));
+                console.log('Phone:', formData.get('phone'));
+                console.log('District:', formData.get('district'));
+                console.log('State:', formData.get('state'));
+                console.log('Registration Date:', formData.get('registration_date'));
+                console.log('Source:', formData.get('source'));
+                console.log('Selected Role:', formData.get('selected_role'));
+                
+                resolve({ success: true, message: 'Registration successful!' });
+            } else {
+                reject(new Error('Simulated network error'));
+            }
+        }, 1500 + Math.random() * 1000); // 1.5-2.5 seconds delay
+    });
 }
 
 // Handle form submission
@@ -160,32 +204,35 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append('source', 'Open Agri Network Signup Page');
         formData.append('selected_role', selectedRole);
         
-        // Submit to FormSubmit.co
-        fetch(form.action, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (response.ok) {
-                // Success - redirect to thank you page with parameters
+        // DUMMY SUBMISSION - Replace with real API call later
+        submitFormDummy(formData)
+            .then(response => {
+                console.log('✅ Registration successful!');
+                
+                // Clear saved form data
+                const formFields = ['name', 'phone', 'district', 'state'];
+                formFields.forEach(fieldId => {
+                    localStorage.removeItem(`agri_form_${fieldId}`);
+                });
+                
+                // Get user data for thank you page
                 const name = document.getElementById('name').value;
                 const role = document.getElementById('role').value;
+                
+                // Redirect to thank you page with parameters
                 window.location.href = `thankyou.html?name=${encodeURIComponent(name)}&role=${role}`;
-            } else {
-                throw new Error('Network response was not ok');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            
-            // Reset button state
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-            submitBtn.classList.remove('loading');
-            
-            // Show error message
-            showMessage('Registration failed. Please try again.', 'error');
-        });
+            })
+            .catch(error => {
+                console.error('❌ Registration failed:', error);
+                
+                // Reset button state
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+                
+                // Show error message
+                showMessage('Registration failed. Please try again.', 'error');
+            });
     });
 });
 
@@ -193,17 +240,19 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     const phoneInput = document.getElementById('phone');
     
-    phoneInput.addEventListener('input', function(e) {
-        // Remove non-numeric characters
-        let value = e.target.value.replace(/\D/g, '');
-        
-        // Limit to 10 digits
-        if (value.length > 10) {
-            value = value.slice(0, 10);
-        }
-        
-        e.target.value = value;
-    });
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            // Remove non-numeric characters
+            let value = e.target.value.replace(/\D/g, '');
+            
+            // Limit to 10 digits
+            if (value.length > 10) {
+                value = value.slice(0, 10);
+            }
+            
+            e.target.value = value;
+        });
+    }
 });
 
 // Auto-capitalize name and location fields
@@ -213,17 +262,19 @@ document.addEventListener('DOMContentLoaded', function() {
     textFields.forEach(fieldId => {
         const field = document.getElementById(fieldId);
         
-        field.addEventListener('input', function(e) {
-            // Capitalize first letter of each word
-            const words = e.target.value.split(' ');
-            const capitalizedWords = words.map(word => {
-                if (word.length > 0) {
-                    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-                }
-                return word;
+        if (field) {
+            field.addEventListener('input', function(e) {
+                // Capitalize first letter of each word
+                const words = e.target.value.split(' ');
+                const capitalizedWords = words.map(word => {
+                    if (word.length > 0) {
+                        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                    }
+                    return word;
+                });
+                e.target.value = capitalizedWords.join(' ');
             });
-            e.target.value = capitalizedWords.join(' ');
-        });
+        }
     });
 });
 
@@ -234,30 +285,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load saved data
     formFields.forEach(fieldId => {
         const field = document.getElementById(fieldId);
-        const savedValue = localStorage.getItem(`agri_form_${fieldId}`);
-        
-        if (savedValue && !field.value) {
-            field.value = savedValue;
+        if (field) {
+            const savedValue = localStorage.getItem(`agri_form_${fieldId}`);
+            
+            if (savedValue && !field.value) {
+                field.value = savedValue;
+            }
+            
+            // Save on input
+            field.addEventListener('input', function() {
+                localStorage.setItem(`agri_form_${fieldId}`, this.value);
+            });
         }
-        
-        // Save on input
-        field.addEventListener('input', function() {
-            localStorage.setItem(`agri_form_${fieldId}`, this.value);
-        });
-    });
-    
-    // Clear saved data on successful submission
-    document.getElementById('signupForm').addEventListener('submit', function() {
-        formFields.forEach(fieldId => {
-            localStorage.removeItem(`agri_form_${fieldId}`);
-        });
     });
 });
 
-
 // Initialize page with URL parameters
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🌾 Signup page loaded');
+    console.log('🌾 Signup page loaded - DEMO MODE');
     
     // Get URL parameters
     const urlParams = new URLSearchParams(window.location.search);
@@ -269,18 +314,20 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Focus on name field
         setTimeout(() => {
-            document.getElementById('name').focus();
+            const nameField = document.getElementById('name');
+            if (nameField) {
+                nameField.focus();
+            }
         }, 500);
     }
     
-    // Track page visit
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'page_view', {
-            page_title: 'Signup Page',
-            page_location: window.location.href,
-            role_preselected: roleParam || 'none'
-        });
-    }
+    // Track page visit (dummy analytics)
+    console.log('📊 Page visit tracked:', {
+        page_title: 'Signup Page',
+        page_location: window.location.href,
+        role_preselected: roleParam || 'none',
+        timestamp: new Date().toISOString()
+    });
 });
 
 // Utility function for URL parameters
