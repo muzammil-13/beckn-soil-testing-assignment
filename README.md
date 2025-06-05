@@ -30,9 +30,16 @@ beckn-soil-testing-assignment/
 
 ## Parts Overview
 
-- **[Part 1 - Implementation Guide](./part1-implementation-guide/README.md)**Detailed guide on Beckn protocol usage for soil testing, including roles, DOFP flow, API calls, sample payloads, and assumptions.
-- **[Part 2 - Frontend UI](./part2-frontend/)**
-  Complete website with homepage, dedicated signup page, and thank you page. Features dummy form submission for demo purposes.
+- **[Part 1 - Implementation Guide](./part1-implementation-guide/README.md)** Detailed guide on Beckn protocol usage for soil testing, including roles, DOFP flow, API calls, sample payloads, and assumptions.
+- **[Part 2 - Frontend UI](./part2-frontend/)** Complete website with homepage, dedicated signup page, and thank you page. Features dummy form submission for demo purposes.
+
+## 🔗 UI Wireframes (Part 2)
+
+The frontend wireframes for the agri-service platform were created using Figma and are being actively iterated.
+
+🔗 [View Wireframes on Figma](https://www.figma.com/design/UElcAilF7ok8iPn2gfhH6G/Open-Agri-Network-Wireframes---stitch?node-id=0-1&t=iVdtRGoCMchDRmTU-1)
+
+---
 
 ---
 
